@@ -11,8 +11,12 @@ for pdf in pdfs:
     for i in range(pdf.getNumPages()):
         if i%3 == 0:
             output.addPage(pdf.getPage(i))
-            output.addPage(pdf.getPage(i+1))
-            output.addPage(pdf.getPage(i+2))
+            try: output.addPage(pdf.getPage(i+1))
+            except KeyError:
+                pass
+            try: output.addPage(pdf.getPage(i+2))
+            except KeyError:
+                pass
     output.write(outputStream)
     
     
